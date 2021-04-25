@@ -37,32 +37,3 @@
      * click on "Save"
      * traverse "Servers > raena > Databases > ribbon_product_management > Schemas > public"
 
-
-## Testing
-This app includes automated tests using **Supertest** and **Substitute** to test routes, etc.
- * `npm run test`
- * NOTE: the Docker database must be running (see Step 5 above)
- * SEE: `__tests__` folders in application for test source code
-
-## Adding new services
-You can follow along the commit history relating to the issues (closed) and see how, but a general idea is:
- 1. add a new route in the `src/app/controller/` folder
- 5. Edit `src/app/config/openapi.json` and add routes to documentation (if REST implementation)
-
-## Resources
- * [Methodology: 12-factor](https://12factor.net/)
- * [Language: Typescript](https://www.typescriptlang.org/)
- * [Framework: Express](https://expressjs.com/)
- * [Documentation: Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/)
- * [Documentation: OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
- * [Config: Dotenv](https://www.npmjs.com/package/dotenv)
- * [Logging: Winston](https://www.npmjs.com/package/winston)
- * [Security: Helmet](https://www.npmjs.com/package/helmet)
- * [Validation: Class Validator](https://www.npmjs.com/package/class-validator)
- * [Database: TypeORM](https://www.npmjs.com/package/typeorm)
- * [Database: PostgreSQL](https://www.postgresql.org/)
- * [Database: Redis](https://redis.io/commands/)
- * [Testing: Supertest](https://www.npmjs.com/package/supertest)
- * [Testing: Docker Compose](https://docs.docker.com/compose/)
- * [Style Guide: Airbnb](https://github.com/airbnb/javascript)
- 
