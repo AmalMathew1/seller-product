@@ -86,15 +86,6 @@
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
   },
-  "author": "Keyvalue",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://bitbucket.org/keyvaluesoftwaresystems/surgeapp"
-  },
-  "homepage": "https://bitbucket.org/keyvaluesoftwaresystems/surgeapp",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
-  }
+  "author": "Amal",
+  "license": "ISC"
 }
