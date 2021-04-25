@@ -1,0 +1,454 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Example API with Seller Product",
+    "description": "This is an example API written in Typescript and features User",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/v1/seller": {
+      "post": {
+        "tags": ["Seller"],
+        "summary": "Seller Create",
+        "requestBody": {
+          "description": "Seller detail",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Seller Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/SellerResponse"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Seller"],
+        "summary": "Update seller details for the given seller id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the seller",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Seller detail to be updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellerDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated seller Data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/SellerResponse"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-Seller"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Returns all data from Seller table",
+        "responses": {
+          "200": {
+            "description": "All data from Seller table",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/SellerResponse"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["systems"],
+        "summary": "Returns success if app running",
+        "responses": {
+          "200": {
+            "description": "A successful status code to indicate app is running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SellerDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": ["name"]
+      },
+      "SellerResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "updatedBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "address"]
+      },
+      "HealthResponse": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorModel": {
+        "type": "object",
+        "required": ["message", "status"],
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 600
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["errors", "message"],
+        "properties": {
+          "data": {
+            "type": "object"
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "length": {
+                "type": "integer"
+              },
+              "took": {
+                "type": "integer"
+              },
+              "total": {
+                "type": "integer"
+              }
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErrorModel"
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Http Exceptions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "VALIDATION_ERROR": {
+                "summary": "Validation failed error",
+                "value": {
+                  "data": null,
+                  "errors": {
+                    "status": 400,
+                    "errorCode": "VALIDATION_ERROR",
+                    "service": "UMS",
+                    "validationErrors": [
+                      {
+                        "target": {},
+                        "property": "",
+                        "children": [],
+                        "constraints": {}
+                      },
+                      {
+                        "target": {},
+                        "property": "string",
+                        "children": [],
+                        "constraints": {}
+                      }
+                    ]
+                  },
+                  "message": "Validation failed error",
+                  "meta": {
+                    "length": 0,
+                    "took": 0,
+                    "total": 0                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "404-Seller": {
+        "description": "EntityNotFoundException",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "KEY_NOT_FOUND": {
+                "summary": "SELLER_ID_NOT_FOUND",
+                "value": {
+                  "data": null,
+                  "errors": {
+                    "status": 404,
+                    "errorCode": "SELLER_ID_NOT_FOUND",
+                    "service": "Product"
+                  },
+                  "message": "Seller with given id not found",
+                  "meta": {
+                    "length": 0,
+                    "took": 0,
+                    "total": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "SELLER_CREATE_EXAMPLE": {
+        "name": "Ajit",
+        "address": "address of seller"
+      },
+      "SELLER_RESPONSE_EXAMPLE": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "updatedBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
