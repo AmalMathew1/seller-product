@@ -350,7 +350,7 @@
                   "errors": {
                     "status": 400,
                     "errorCode": "VALIDATION_ERROR",
-                    "service": "UMS",
+                    "service": "Product",
                     "validationErrors": [
                       {
                         "target": {},

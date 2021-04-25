@@ -19,8 +19,8 @@
  5. `docker-compose up`
     * This will spin up Postgres
     * To stop them, and remove local volumes: `docker-compose down -v`
- 6. Create database name 'ribbon_db' using PGAdmin
- 7. Create schema named 'ribbon_product_management' under database
+ 6. Create database name 'product_db' using PGAdmin
+ 7. Create schema named 'product_management' under database
  8. to create table struct in db run
     `npm run migrate`
  6. Run tests (will load up test data in tables)
@@ -30,10 +30,10 @@
  8. Open browser tab to [Swagger UI Explorer](http://localhost:3000/api-docs) to explore API
  9. Open browser tab to [Postgres Admin](http://localhost:9090/browser) for Postgres Admin
      * click on "Servers" and then "Object > Create > Server"
-     * "General > Name" the connection "raena"
+     * "General > Name" the connection "product_db"
      * click on "Connection" tab:
        * Host: `postgres` (network exposed by docker-compose)
        * Password: `admin` (or whatever you set in ENV vars)
      * click on "Save"
-     * traverse "Servers > raena > Databases > ribbon_product_management > Schemas > public"
+     * traverse "Servers > product_db > Databases > product_management > Schemas > public"
 

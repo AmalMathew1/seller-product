@@ -11,8 +11,8 @@ import logger from "./logger";
 const config: { [key: string]: PostgresConnectionOptions } = {
   test: {
     // hardcoding test database as myapp_test_db to prevent misuse
-    database: "ribbon_test_db",
-    schema: "ribbon_product_management",
+    database: "product_test_db",
+    schema: "product_management",
     entities: [
       "dist/app/entity/*{.ts,.js}",
     ],
@@ -33,7 +33,7 @@ const config: { [key: string]: PostgresConnectionOptions } = {
   },
   development: {
     database: process.env.POSTGRES_DB,
-    schema: "ribbon_product_management",
+    schema: "product_management",
     entities: [`${__dirname}/../entity/*{.ts,.js}`],
     extra: { max: 10, min: 5 }, // connection pool
     host: process.env.POSTGRES_HOST,
