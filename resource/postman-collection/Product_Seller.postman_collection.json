@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "6de1ce1e-76bf-401e-b1f0-9fa79bd776c0",
+		"name": "Product_Seller",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Seller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"AVS002\",\n  \"address\": \"addressssssssss 135 hh oo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/seller",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller"
+					]
+				},
+				"description": "Create Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Seller",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"AVS001\",\n  \"address\": \"555555555555\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/seller/017b339f-c1db-4ecc-bb7f-d4b2d64a8a68",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller",
+						"017b339f-c1db-4ecc-bb7f-d4b2d64a8a68"
+					]
+				},
+				"description": "Update Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Seller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/v1/seller?id=017b339f-c1db-4ecc-bb7f-d4b2d64a8a68",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "017b339f-c1db-4ecc-bb7f-d4b2d64a8a68"
+						}
+					]
+				},
+				"description": "Get All Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product for Seller",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"DDD\",\n  \"description\": \"assssssssso\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/seller/a01ddb78-0125-4591-a1c4-aba5f67fa97a/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller",
+						"a01ddb78-0125-4591-a1c4-aba5f67fa97a",
+						"product"
+					]
+				},
+				"description": "Create Product for Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product for Seller",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"AVS001\",\n  \"address\": \"555555555555\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/v1/seller/017b339f-c1db-4ecc-bb7f-d4b2d64a8a68",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller",
+						"017b339f-c1db-4ecc-bb7f-d4b2d64a8a68"
+					]
+				},
+				"description": "Update Product for Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product for Seller",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/v1/seller/a01ddb78-0125-4591-a1c4-aba5f67fa97a/product?productId=be020e07-21a4-4f87-b1bf-bd39822ceabd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"seller",
+						"a01ddb78-0125-4591-a1c4-aba5f67fa97a",
+						"product"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "017b339f-c1db-4ecc-bb7f-d4b2d64a8a67",
+							"disabled": true
+						},
+						{
+							"key": "productId",
+							"value": "be020e07-21a4-4f87-b1bf-bd39822ceabd"
+						}
+					]
+				},
+				"description": "Get All Product for Seller"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"product"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "017b339f-c1db-4ecc-bb7f-d4b2d64a8a67",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Get All Product"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
