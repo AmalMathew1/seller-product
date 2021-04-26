@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Example API with Seller Product",
-    "description": "This is an example API written in Typescript and features User",
+    "title": "API with Seller Product",
+    "description": "API with Seller Product",
     "version": "1.0.0"
   },
   "servers": [
@@ -68,6 +68,132 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Returns all data from Seller table",
+        "responses": {
+          "200": {
+            "description": "All data from Seller table",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/SellerResponse"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/seller/{id}": {
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Return seller data from given seller id",
+        "responses": {
+          "200": {
+            "description": "seller data from given seller id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/SellerResponse"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-Seller"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -141,15 +267,27 @@
           },
           "404": {
             "$ref": "#/components/responses/404-Seller"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
-      },
+      }
+    },
+    "/v1/seller/{id}/product": {
       "get": {
         "tags": ["Seller"],
-        "summary": "Returns all data from Seller table",
+        "summary": "Return all products for given seller id",
         "responses": {
           "200": {
-            "description": "All data from Seller table",
+            "description": "All products for given seller id",
             "content": {
               "application/json": {
                 "schema": {
@@ -160,7 +298,304 @@
                       "type": "array",
                       "items": {
                         "type": "object",
-                        "$ref": "#/components/schemas/SellerResponse"
+                        "$ref": "#/components/schemas/ProductResponse"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404-Seller": {
+            "$ref": "#/components/responses/404-Seller"
+            
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Seller"],
+        "summary": "Product Create by a seller",
+        "requestBody": {
+          "description": "Product detail",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ProductResponse"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-Seller"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/seller/{id}/product/{productId}": {
+      "put": {
+        "tags": ["Seller"],
+        "summary": "Update product details for the given productId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "productId of the product to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Product detail to be updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated product Data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ProductResponse"
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404-Seller": {
+            "$ref": "#/components/responses/404-Seller"
+            
+          },
+          "404-Product": {
+            "$ref": "#/components/responses/404-Product"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Seller"],
+        "summary": "Return product data for given productId",
+        "responses": {
+          "200": {
+            "description": "Product data for given productId",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ProductResponse"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "length": {
+                          "type": "integer"
+                        },
+                        "took": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ErrorModel"
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404-Seller": {
+            "$ref": "#/components/responses/404-Seller"
+            
+          },
+          "404-Product": {
+            "$ref": "#/components/responses/404-Product"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/product": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Returns all products from table",
+        "responses": {
+          "200": {
+            "description": "All products table",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["data", "message"],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ProductResponse"
                       }
                     },
                     "meta": {
@@ -206,7 +641,7 @@
     },
     "/health": {
       "get": {
-        "tags": ["systems"],
+        "tags": ["Systems"],
         "summary": "Returns success if app running",
         "responses": {
           "200": {
@@ -247,6 +682,18 @@
         },
         "required": ["name"]
       },
+      "ProductDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["name"]
+      },
       "SellerResponse": {
         "type": "object",
         "properties": {
@@ -277,6 +724,41 @@
           }
         },
         "required": ["id", "name", "address"]
+      },
+      "ProductResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "seller": {
+            "type": "object",
+            "$ref": "#/components/schemas/SellerResponse"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "updatedBy": {
+            "type": "string"
+          },
+          "createdAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "updatedAt": {
+            "description": "Enables basic storage and retrieval of dates and times.",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "description"]
       },
       "HealthResponse": {
         "type": "object",
@@ -405,6 +887,35 @@
             }
           }
         }
+      },
+      "404-Product": {
+        "description": "EntityNotFoundException",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "KEY_NOT_FOUND": {
+                "summary": "PRODUCT_ID_NOT_FOUND",
+                "value": {
+                  "data": null,
+                  "errors": {
+                    "status": 404,
+                    "errorCode": "PRODUCT_ID_NOT_FOUND",
+                    "service": "Product"
+                  },
+                  "message": "Product with given id not found",
+                  "meta": {
+                    "length": 0,
+                    "took": 0,
+                    "total": 0
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "examples": {
@@ -441,13 +952,6 @@
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
       }
     }
   }

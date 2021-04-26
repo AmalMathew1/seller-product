@@ -37,7 +37,7 @@ class SellerServiceImpl implements SellerService {
    * @returns Created seller data
    */
   public createSeller = async (seller: SellerCreateDto): Promise<Seller> => {
-    logger.info(`Create seller with payload ${seller}`);
+    logger.info(`Create seller with payload ${JSON.stringify(seller)}`);
     const sellerPayload: DeepPartial<Seller> = seller;
     return await this.getSellerRepository().createSeller(sellerPayload);
   };
