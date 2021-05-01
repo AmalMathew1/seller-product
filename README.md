@@ -27,7 +27,7 @@
     * `npm run test`
  7. Start up app in developer mode (will watch and recompile for changes)
     * `npm run dev`
- 8. Open browser tab to [Swagger UI Explorer](http://localhost:3000/seller/api-docs) to explore API
+ 8. Open browser tab to [Swagger UI Explorer](http://localhost:3000/api-docs) to explore API
  9. Open browser tab to [Postgres Admin](http://localhost:9090/browser) for Postgres Admin
      * click on "Servers" and then "Object > Create > Server"
      * "General > Name" the connection "product_db"
