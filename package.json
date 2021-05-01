@@ -12,7 +12,7 @@
     "start-prd": "NODE_ENV=production node dist/app/server.js",
     "dev": "NODE_ENV=development tsc-watch --onSuccess \"node ./dist/app/server.js\"",
     "add-migration": "npm run build && node ./node_modules/typeorm/cli --f ./dist/app/config/rdbms.js migration:generate -n",
-    "migrate": "npm run build && NODE_ENV=production node ./node_modules/typeorm/cli --f ./dist/app/config/rdbms.js migration:run -t=each",
+    "migrate": "npm run build && NODE_ENV=development node ./node_modules/typeorm/cli --f ./dist/app/config/rdbms.js migration:run -t=each",
     "test": "tsc && NODE_ENV=test nyc --reporter=html --reporter=lcov mocha --timeout 20000 dist/test/  --recursive --exit",
     "debug": "node --nolazy --nolazy --inspect-brk=9229 dist/app/server.js"
   },

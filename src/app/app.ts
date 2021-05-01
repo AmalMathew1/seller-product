@@ -84,7 +84,7 @@ class App extends EventEmitter {
    */
   private initializeApiDocs() {
     this.app.use(
-      "/seller/api-docs",
+      "/api-docs",
       swaggerUi.serve,
       swaggerUi.setup(swaggerDocument)
     );
